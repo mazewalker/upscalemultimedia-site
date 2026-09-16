@@ -24,8 +24,18 @@ h2{font-size:28px;margin-bottom:14px}
 .card h3{font-size:17px;margin-bottom:6px}
 .card p{color:var(--mut);font-size:14.5px}
 .showcase{background:var(--card);border:1px solid #1f2c3d;border-radius:16px;overflow:hidden}
-.showcase img{width:100%;display:block}
+.showcase img{width:100%;display:block;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.showcase img:active{opacity:.9}
 .showcase figcaption{padding:12px 18px;color:var(--mut);font-size:14px}
+.lx{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;background:rgba(6,10,17,.95);padding:16px}
+.lx.open{display:flex}
+.lx-in{width:min(94vw,1120px)}
+.lx video{width:100%;max-height:76vh;display:block;border-radius:10px;background:#000}
+.lx-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px}
+.lx-t{color:#c8d1de;font-size:13.5px;line-height:1.5}
+.lx-t b{color:#fff}
+.lx-stop{background:var(--acc);border:0;color:#04101a;font:700 14px/1 system-ui;padding:12px 26px;border-radius:9px;cursor:pointer;flex:none}
+.lx-close{position:absolute;top:16px;right:20px;background:none;border:0;color:#8b97a8;font-size:34px;cursor:pointer;line-height:1;z-index:101}
 table{width:100%;border-collapse:collapse;margin-top:10px}
 th,td{text-align:left;padding:12px 14px;border-bottom:1px solid #1f2c3d;font-size:14.5px}
 th{color:var(--mut);font-weight:600}
@@ -61,12 +71,13 @@ footer{padding:40px 0;text-align:center;color:var(--mut);font-size:14px}
 <div class="wrap">
 <section>
   <h2>See the difference</h2>
+  <p style="color:var(--mut);font-size:14.5px">Tap a sample to play the before/after clip — it loops until you hit <b>Stop</b>.</p>
   <figure class="showcase">
-    <img src="assets/sample_street_1905.png" alt="Before: grainy 320x240 1905 San Francisco street frame. After: AI-restored 1280x960" loading="lazy">
+    <img src="assets/sample_street_1905.png" data-video="assets/demo_street_1905.mp4" data-title="1905 San Francisco street" data-cap="320×240 source → 4× restored 1280×960 — grain gone, streetcar and signage sharpened." alt="Before: grainy 320x240 1905 San Francisco street frame. After: AI-restored 1280x960" loading="lazy">
     <figcaption>1905 San Francisco street — 320×240 source restored 4× to crisp 1280×960. Grain gone, streetcar and signage sharpened.</figcaption>
   </figure>
   <figure class="showcase" style="margin-top:16px">
-    <img src="assets/sample_face_1929.png" alt="Before: grainy 1929 home-movie portrait. After: 4x upscaled with AI face enhancement" loading="lazy">
+    <img src="assets/sample_face_1929.png" data-video="assets/demo_face_1929.mp4" data-title="1929 home movie — face pass" data-cap="640×480, 1929 → 4× upscale plus dedicated AI face-enhancement pass (Premium tier)." alt="Before: grainy 1929 home-movie portrait. After: 4x upscaled with AI face enhancement" loading="lazy">
     <figcaption>1929 home-movie face — 4× upscale plus a dedicated AI face-enhancement pass (Premium tier). Same person, decades more detail.</figcaption>
   </figure>
   <p style="color:var(--mut);font-size:13.5px;margin-top:14px">Demo footage: public domain (Prelinger Archives, archive.org). Every delivery includes before/after proof frames like these.</p>
@@ -121,7 +132,34 @@ footer{padding:40px 0;text-align:center;color:var(--mut);font-size:14px}
 </section>
 </div>
 
+<div class="lx" id="lx" role="dialog" aria-modal="true" aria-label="Before and after sample video">
+  <button class="lx-close" id="lxc" aria-label="Close player">×</button>
+  <div class="lx-in">
+    <video id="lxv" loop playsinline preload="none"></video>
+    <div class="lx-bar">
+      <div class="lx-t"><b id="lxt">Sample</b> <span id="lxcap"></span></div>
+      <button class="lx-stop" id="lxstop">Stop</button>
+    </div>
+  </div>
+</div>
+
 <footer>© <span id="y"></span> Upscale Multimedia · Private AI video restoration in the EU · hello@upscalemultimedia.com</footer>
-<script>document.getElementById("y").textContent=new Date().getFullYear()</script>
+<script>
+document.getElementById("y").textContent=new Date().getFullYear();
+var lx=document.getElementById("lx"),v=document.getElementById("lxv"),
+    xt=document.getElementById("lxt"),xc=document.getElementById("lxcap");
+function openLx(src,title,cap){v.src=src;v.loop=true;xt.textContent=title;xc.textContent=cap;lx.classList.add("open");v.play().catch(function(){})}
+function closeLx(){v.pause();v.removeAttribute("src");v.load();lx.classList.remove("open")}
+document.querySelectorAll(".showcase img[data-video]").forEach(function(img){
+  img.setAttribute("role","button");img.setAttribute("tabindex","0");
+  img.setAttribute("aria-label","Play before/after video: "+(img.dataset.title||"sample"));
+  img.addEventListener("click",function(){openLx(img.dataset.video,img.dataset.title||"",img.dataset.cap||"")});
+  img.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();img.click()}});
+});
+document.getElementById("lxstop").addEventListener("click",closeLx);
+document.getElementById("lxc").addEventListener("click",closeLx);
+lx.addEventListener("click",function(e){if(e.target===lx)closeLx()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&lx.classList.contains("open"))closeLx()});
+</script>
 </body>
 </html>
