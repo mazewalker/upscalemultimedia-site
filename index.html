@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Upscale Multimedia — AI Video Restoration & 4K Upscaling</title>
-<meta name="description" content="AI video restoration: 4× upscaling, denoising, deinterlacing for VHS, camcorder and old phone footage. Processed on private EU hardware.">
+<title>Upscale Multimedia — AI Video Restoration, Colorization &amp; 4K Upscaling</title>
+<meta name="description" content="AI video restoration: black-and-white colorization, 4× upscaling, stabilization, denoising for VHS, camcorder and silent-film footage. Processed on private EU hardware.">
 <style>
 :root{--bg:#0b0f14;--card:#121924;--ink:#e8eef6;--mut:#93a4b8;--acc:#35d0a5;--acc2:#5aa9ff}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -60,13 +60,13 @@ footer{padding:40px 0;text-align:center;color:var(--mut);font-size:14px}
 </head>
 <body>
 <header class="wrap">
-  <h1>Your old videos, <em>restored</em>.<br>Sharper. Cleaner. 4× bigger.</h1>
-  <p class="sub">VHS tapes, camcorder files, old phone footage, DVD rips — send us the grainy original, get back a 4× upscaled, denoised, deinterlaced version with audio intact. Processed on private hardware in the EU. Your memories never touch a public API.</p>
+  <h1>Your old videos, <em>restored</em>.<br>Sharper. Cleaner. Colored. 4× bigger.</h1>
+  <p class="sub">Silent black-and-white films, VHS tapes, camcorder files — send us the original, get back a colorized, stabilized, denoised 4× upscaled version with audio intact. Processed on private hardware in the EU. Your memories never touch a public API.</p>
   <div class="badges">
+    <span class="badge"><b>B&amp;W → color</b> AI colorization</span>
     <span class="badge"><b>4×</b> upscale (720p → 2880p)</span>
-    <span class="badge"><b>~realtime</b> SD processing</span>
+    <span class="badge"><b>stabilized</b> jitter removal</span>
     <span class="badge">🇪🇺 <b>EU</b> private processing</span>
-    <span class="badge">before/after <b>proof</b></span>
   </div>
 </header>
 
@@ -75,6 +75,10 @@ footer{padding:40px 0;text-align:center;color:var(--mut);font-size:14px}
   <h2>See the difference</h2>
   <p style="color:var(--mut);font-size:14.5px">Tap a sample to play the before/after clip — it loops until you hit <b>Stop</b>.</p>
   <figure class="showcase">
+    <img src="assets/sample_colorize_1905.png" data-video="assets/demo_colorize_1905.mp4" data-ar="16/9" data-title="1905 silent film — B&amp;W → color" data-cap="640×480, 1905 Edison silent film → AI decides what was what color, stabilized, 4× to 2560×1920." alt="Before: grainy black-and-white 1905 subway scene. After: AI colorized, stabilized, 4x upscaled" loading="eager">
+    <figcaption>1905 silent film, black-and-white → full color. The AI works out what was what color — period-plausible clothes, warm lighting — plus stabilization and a 4× upscale. Our signature service.</figcaption>
+  </figure>
+  <figure class="showcase" style="margin-top:16px">
     <img src="assets/sample_street_1905.png" data-video="assets/demo_street_1905.mp4" data-title="1905 San Francisco street" data-cap="320×240 source → 4× restored 1280×960 — grain gone, streetcar and signage sharpened." alt="Before: grainy 320x240 1905 San Francisco street frame. After: AI-restored 1280x960" loading="lazy">
     <figcaption>1905 San Francisco street — 320×240 source restored 4× to crisp 1280×960. Grain gone, streetcar and signage sharpened.</figcaption>
   </figure>
@@ -115,7 +119,7 @@ footer{padding:40px 0;text-align:center;color:var(--mut);font-size:14px}
       <p>Up to 30 minutes · face-enhancement pass for people-focused footage · per-scene proof · 3 revisions</p>
     </div>
   </div>
-  <p style="color:var(--mut);font-size:14px;margin-top:14px">Rush +50% · extra footage +$90/5 min · commercial license available on request.</p>
+  <p style="color:var(--mut);font-size:14px;margin-top:14px">Rush +50% · extra footage +$90/5 min · B&amp;W → color add-on +$40/min · face-enhancement pass +$40/min · commercial license on request.</p>
 </section>
 
 <section>
@@ -123,7 +127,8 @@ footer{padding:40px 0;text-align:center;color:var(--mut);font-size:14px}
   <details open><summary>How big can the result be?</summary><p>4× the source resolution: 480p → 1920p, 720p → ≈2.9K. Perfect for family archives, e-commerce reels, and any clip outgrown by modern screens.</p></details>
   <details><summary>Can it fix damaged tape or dropouts?</summary><p>We recover detail, noise and softness from what exists in the file. Truly lost frames are limited — after a free preview we'll tell you honestly what's recoverable.</p></details>
   <details><summary>Where is my video processed?</summary><p>On our own private hardware in the EU. No third-party APIs, no US cloud. We can confirm deletion of your source file after delivery.</p></details>
-  <details><summary>What software / model do you use?</summary><p>Real-ESRGAN (x4) for the general-purpose 4× upscale + denoise, yadif for VHS/DVD deinterlacing, and CodeFormer as a face-dedicated enhancement pass on the Premium tier. All run on our own NVIDIA RTX GPUs — batch-processed per job, fast for SD sources (~realtime).</p></details>
+  <details><summary>What software / model do you use?</summary><p>Real-ESRGAN (x4) for the 4× upscale + denoise, DDColor (ICCV 2023) for black-and-white colorization with temporal color-consistency smoothing, ffmpeg vidstab for stabilization, yadif for VHS/DVD deinterlacing, and CodeFormer as a face-dedicated enhancement pass on the Premium tier. All run on our own NVIDIA RTX GPUs — batch-processed per job, fast for SD sources (~realtime).</p></details>
+  <details><summary>Will colors look right in a 100-year-old film?</summary><p>Yes — the colorizer infers plausible period colors from context (fabrics, lighting, architecture) rather than slapping a modern palette on, and we smooth the grade across the whole clip so clothing stays a consistent color. You judge it on the free preview; if a look isn't working we'll adjust the grade.</p></details>
   <details><summary>What do I need to send?</summary><p>A cloud link to the original file and anything you specifically want preserved (a scene, on-screen text, a color look).</p></details>
 </section>
 
@@ -152,9 +157,10 @@ document.getElementById("y").textContent=new Date().getFullYear();
 var lx=document.getElementById("lx"),v=document.getElementById("lxv"),
     xt=document.getElementById("lxt"),xc=document.getElementById("lxcap"),
     lxobjURL=null;
-function openLx(src,title,cap){
+function openLx(src,title,cap,ar){
   if(lxobjURL){URL.revokeObjectURL(lxobjURL);lxobjURL=null}
   var req=(openLx.n=(openLx.n||0)+1);
+  v.style.aspectRatio=ar||"8/3";
   lx.classList.add("open");lx.classList.add("lx-loading");
   xt.textContent=title;xc.textContent=cap;
   fetch(src).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.blob()})
@@ -176,7 +182,7 @@ function closeLx(){if(openLx)openLx.n=(openLx.n||0)+1;v.pause();v.removeAttribut
 document.querySelectorAll(".showcase img[data-video]").forEach(function(img){
   img.setAttribute("role","button");img.setAttribute("tabindex","0");
   img.setAttribute("aria-label","Play before/after video: "+(img.dataset.title||"sample"));
-  img.addEventListener("click",function(){openLx(img.dataset.video,img.dataset.title||"",img.dataset.cap||"")});
+  img.addEventListener("click",function(){openLx(img.dataset.video,img.dataset.title||"",img.dataset.cap||"",img.dataset.ar)});
   img.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();img.click()}});
 });
 document.getElementById("lxstop").addEventListener("click",closeLx);
