@@ -38,6 +38,14 @@ h2{font-size:28px;margin-bottom:14px}
 .lx-t b{color:#fff}
 .lx-stop{background:var(--acc);border:0;color:#04101a;font:700 14px/1 system-ui;padding:12px 26px;border-radius:9px;cursor:pointer;flex:none}
 .lx-close{position:absolute;top:16px;right:20px;background:none;border:0;color:#8b97a8;font-size:34px;cursor:pointer;line-height:1;z-index:101}
+.aud-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:16px}
+.aud-card{background:var(--card);border:1px solid #1f2c3d;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.aud-card b{font-size:15.5px}
+.aud-card span{color:var(--mut);font-size:13.5px}
+.aud-btn{background:var(--acc);color:#04101a;font:700 14px/1 system-ui;padding:12px 18px;border:0;border-radius:9px;cursor:pointer}
+.aud-card.rec{background:linear-gradient(180deg,#13202b,var(--card))}
+.audv{width:100%;display:none;border-radius:10px;background:#000}
+.audv.on{display:block}
 table{width:100%;border-collapse:collapse;margin-top:10px}
 th,td{text-align:left;padding:12px 14px;border-bottom:1px solid #1f2c3d;font-size:14.5px}
 th{color:var(--mut);font-weight:600}
@@ -90,6 +98,24 @@ footer{padding:40px 0;text-align:center;color:var(--mut);font-size:14px}
     <img src="assets/sample_apollo11_1969.png" data-video="assets/demo_apollo11_1969.mp4" data-title="Apollo 11, Saturn V on the pad — 1969" data-cap="320×180 1969 broadcast color → 4× restored 1280×720, stabilized. NASA Kennedy Space Center footage, public domain." alt="Before: grainy 320x180 1969 Apollo 11 Saturn V launch-pad color broadcast. After: 4x restored, stabilized" loading="lazy">
     <figcaption>Apollo 11, Saturn V on the pad, Kennedy Space Center, 1969 — 320×180 broadcast color restored 4× to crisp 1280×720, with stabilization. From 1905 silent film to the space program: we handle every era.</figcaption>
   </figure>
+  <figure class="showcase" style="margin-top:16px">
+    <img src="assets/sample_audio_a11.png" data-video="assets/demo_audio_a11_sbs.mp4" data-title="Apollo 11 launch — full restoration + AI audio" data-cap="Original (left) vs 4× restored (right), silent comparison. The audio versions with sound are below — original vs AI-enhanced." data-ar="2/1" alt="Before and after side by side of the Apollo 11 rocket launch, plus AI audio enhancement" loading="lazy">
+    <figcaption><b>The complete package:</b> 4× upscale + stabilization + AI audio enhancement on the Apollo 11 launch — the only sample on this page with a full audio pipeline. Tap the two buttons below to hear the original vs the enhanced (hiss scrubbed, voice and engine low-end preserved).</figcaption>
+  </figure>
+  <div class="aud-row">
+    <div class="aud-card">
+      <b>🔊 Original audio</b>
+      <span>Raw 1969 broadcast track — tape hiss and all.</span>
+      <button class="aud-btn" data-src="assets/demo_audio_a11_orig.mp4">▶ Play original</button>
+      <video class="audv" controls playsinline preload="none"></video>
+    </div>
+    <div class="aud-card rec">
+      <b>✨ AI-enhanced audio</b>
+      <span>Hiss and hum removed, speech kept — our hybrid AI denoiser.</span>
+      <button class="aud-btn" data-src="assets/demo_audio_a11_enhanced.mp4">▶ Play enhanced</button>
+      <video class="audv" controls playsinline preload="none"></video>
+    </div>
+  </div>
   <p style="color:var(--mut);font-size:13.5px;margin-top:14px">Demo footage: public domain (Prelinger Archives, archive.org, NASA). Every delivery includes before/after proof frames like these.</p>
 </section>
 
@@ -123,7 +149,7 @@ footer{padding:40px 0;text-align:center;color:var(--mut);font-size:14px}
       <p>Up to 30 minutes · face-enhancement pass for people-focused footage · per-scene proof · 48h delivery · 3 revisions</p>
     </div>
   </div>
-  <p style="color:var(--mut);font-size:14px;margin-top:14px">Usually in your inbox within 24 hours · Rush +50% · extra footage +$90/5 min · B&amp;W → color add-on +$25/min · face-enhancement pass +$40/min · commercial license on request.</p>
+  <p style="color:var(--mut);font-size:14px;margin-top:14px">Usually in your inbox within 24 hours · Rush +50% · extra footage +$90/5 min · B&amp;W → color add-on +$25/min · face-enhancement pass +$40/min · AI audio enhancement (hiss/hum removal, speech preserved) +$20/min · commercial license on request.</p>
 </section>
 
 <section>
@@ -131,7 +157,7 @@ footer{padding:40px 0;text-align:center;color:var(--mut);font-size:14px}
   <details open><summary>How big can the result be?</summary><p>4× the source resolution: 480p → 1920p, 720p → ≈2.9K. Perfect for family archives, e-commerce reels, and any clip outgrown by modern screens.</p></details>
   <details><summary>Can it fix damaged tape or dropouts?</summary><p>We recover detail, noise and softness from what exists in the file. Truly lost frames are limited — after a free preview we'll tell you honestly what's recoverable.</p></details>
   <details><summary>Where is my video processed?</summary><p>On our own private hardware in the EU. No third-party APIs, no US cloud. We can confirm deletion of your source file after delivery.</p></details>
-  <details><summary>What software / model do you use?</summary><p>Real-ESRGAN (x4) for the 4× upscale + denoise, DDColor (ICCV 2023) for black-and-white colorization with temporal color-consistency smoothing, ffmpeg vidstab for stabilization, yadif for VHS/DVD deinterlacing, and CodeFormer as a face-dedicated enhancement pass on the Premium tier. All run on our own NVIDIA RTX GPUs — batch-processed per job, fast for SD sources (~realtime).</p></details>
+  <details><summary>What software / model do you use?</summary><p>Real-ESRGAN (x4) for the 4× upscale + denoise, DDColor (ICCV 2023) for black-and-white colorization with temporal color-consistency smoothing, ffmpeg vidstab for stabilization, yadif for VHS/DVD deinterlacing, CodeFormer as a face-dedicated enhancement pass on the Premium tier, and our hybrid AI denoiser — DeepFilterNet 3 (NVIDIA, on our GPUs) layered with low-band + speech preservation — for the audio-enhancement option. All run on our own NVIDIA RTX GPUs — batch-processed per job, fast for SD sources (~realtime).</p></details>
   <details><summary>Will colors look right in a 100-year-old film?</summary><p>Yes — the colorizer infers plausible period colors from context (fabrics, lighting, architecture) rather than slapping a modern palette on, and we smooth the grade across the whole clip so clothing stays a consistent color. You judge it on the free preview; if a look isn't working we'll adjust the grade.</p></details>
   <details><summary>What do I need to send?</summary><p>A cloud link to the original file and anything you specifically want preserved (a scene, on-screen text, a color look).</p></details>
 </section>
@@ -188,6 +214,17 @@ document.querySelectorAll(".showcase img[data-video]").forEach(function(img){
   img.setAttribute("aria-label","Play before/after video: "+(img.dataset.title||"sample"));
   img.addEventListener("click",function(){openLx(img.dataset.video,img.dataset.title||"",img.dataset.cap||"",img.dataset.ar)});
   img.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();img.click()}});
+});
+document.querySelectorAll(".aud-btn").forEach(function(btn){
+  btn.addEventListener("click",function(){
+    var card=btn.closest(".aud-card"),vid=card.querySelector(".audv");
+    document.querySelectorAll(".audv.on").forEach(function(o){if(o!==vid){o.pause();o.removeAttribute("src");o.load();o.classList.remove("on")}});
+    if(vid.classList.contains("on")){vid.pause();vid.removeAttribute("src");vid.load();vid.classList.remove("on");return}
+    btn.textContent="Loading…";
+    fetch(btn.dataset.src).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.blob()})
+      .then(function(b){var u=URL.createObjectURL(b);vid.src=u;vid.classList.add("on");btn.textContent="⏸ Stop";vid.play().catch(function(){});vid.onended=function(){vid.load();btn.textContent="▶ Play again"}})
+      .catch(function(){btn.textContent="Could not load audio"});
+  });
 });
 document.getElementById("lxstop").addEventListener("click",closeLx);
 document.getElementById("lxc").addEventListener("click",closeLx);
