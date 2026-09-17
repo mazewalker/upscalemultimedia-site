@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Upscale Multimedia — AI Video Restoration, Colorization &amp; 4K Upscaling</title>
-<meta name="description" content="AI video restoration: black-and-white colorization, 4× upscaling, stabilization, denoising for VHS, camcorder and silent-film footage. Processed on private EU hardware.">
+<title>Upscale Multimedia — AI Video &amp; Photo Restoration, Colorization &amp; 4K Upscaling</title>
+<meta name="description" content="AI video & photo restoration: black-and-white colorization, 4× upscaling, denoising, face enhancement for VHS, old photographs and silent-film footage. Processed on private EU hardware.">
 <style>
 :root{--bg:#0b0f14;--card:#121924;--ink:#e8eef6;--mut:#93a4b8;--acc:#35d0a5;--acc2:#5aa9ff}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -68,12 +68,12 @@ footer{padding:40px 0;text-align:center;color:var(--mut);font-size:14px}
 </head>
 <body>
 <header class="wrap">
-  <h1>Your old videos, <em>restored</em>.<br>Sharper. Cleaner. Colored. 4× bigger.</h1>
-  <p class="sub">Silent black-and-white films, VHS tapes, camcorder files — send us the original, get back a colorized, stabilized, denoised 4× upscaled version with audio intact. Processed on private hardware in the EU. Your memories never touch a public API.</p>
+  <h1>Your old videos <em>&amp; photos</em>,<br>restored. Sharper. Cleaner. Colored. 4× bigger.</h1>
+  <p class="sub">Silent black-and-white films, VHS tapes, camcorder files and old photographs — send us the original, get back a colorized, stabilized, denoised 4× upscaled version. For video, with audio intact. Processed on private hardware in the EU. Your memories never touch a public API.</p>
   <div class="badges">
     <span class="badge"><b>B&amp;W → color</b> AI colorization</span>
     <span class="badge"><b>4×</b> upscale (720p → 2880p)</span>
-    <span class="badge"><b>stabilized</b> jitter removal</span>
+    <span class="badge"><b>vid + photo</b> video or stills</span>
     <span class="badge">🇪🇺 <b>EU</b> private processing</span>
   </div>
 </header>
@@ -120,6 +120,21 @@ footer{padding:40px 0;text-align:center;color:var(--mut);font-size:14px}
 </section>
 
 <section>
+  <h2>Old <em>photos</em>, brought back</h2>
+  <p style="color:var(--mut);font-size:14.5px;margin-bottom:18px">The same engine family, one image at a time. Send a single scan — get back a clean, upscaled, colorized, face-sharpened version. No video required.</p>
+  <div class="cols" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+    <div class="showcase">
+      <img src="assets/photo_colorize.jpg" data-title="1860 portrait — B&amp;W → color" data-cap="Ambrotype scan (Butler, 1860, PD) → DDColor period colorization + 4× RealESRGAN + CodeFormer face pass." alt="Before: grainy black-and-white 1860 Lincoln portrait scan. After: colorized, 4x upscaled, face enhanced" loading="lazy">
+      <figcaption><b>B&amp;W → color.</b> 1860 presidential portrait — period-plausible color, decades more facial detail.</figcaption>
+    </div>
+    <div class="showcase">
+      <img src="assets/photo_upscale.jpg" data-title="Apollo 11 — 4× upscale" data-cap="Small color scan of the Saturn V on the pad (NASA, PD) → 4× AI upscale + denoise, detail recovered." alt="Before: small low-resolution color Apollo 11 Saturn V photo. After: 4x upscaled, sharper" loading="lazy">
+      <figcaption><b>Upscale + denoise.</b> A small scan of the Saturn V on the pad, restored 4× — grain gone, edges sharpened.</figcaption>
+    </div>
+  </div>
+</section>
+
+<section>
   <h2>How it works</h2>
   <ol class="how">
     <li><b>Send the file.</b> Any format — MP4, MOV, MKV, AVI, camcorder MTS. Link via Google Drive, Dropbox or WeTransfer. Up to 20 GB.</li>
@@ -149,7 +164,9 @@ footer{padding:40px 0;text-align:center;color:var(--mut);font-size:14px}
       <p>Up to 30 minutes · face-enhancement pass for people-focused footage · per-scene proof · 48h delivery · 3 revisions</p>
     </div>
   </div>
-  <p style="color:var(--mut);font-size:14px;margin-top:14px">Usually in your inbox within 24 hours · Rush +50% · extra footage +$90/5 min · B&amp;W → color add-on +$25/min · face-enhancement pass +$40/min · AI audio enhancement (hiss/hum removal, speech preserved) +$20/min · commercial license on request.</p>
+
+  <p style="color:var(--mut);font-size:14.5px;margin-top:26px;border-left:2px solid var(--acc);padding-left:12px"><em style="color:var(--ink)">Old photos (per image, fixed price):</em> Single scan — upscale + denoise <b>$18</b> · B&amp;W → color <b>$35</b> · face-pass (people portrait) <b>$50</b> · full 4× restore on a full-res/high-res scan <b>+$10</b>.</p>
+  <p style="color:var(--mut);font-size:14px;margin-top:14px">Usually in your inbox within 24 hours · Rush +50% · extra footage +$90/5 min · B&amp;W → color add-on on video +$25/min · face-enhancement pass +$40/min · AI audio enhancement +$20/min · photo bundles: 6+ images −15% · commercial license on request.</p>
 </section>
 
 <section>
@@ -159,12 +176,13 @@ footer{padding:40px 0;text-align:center;color:var(--mut);font-size:14px}
   <details><summary>Where is my video processed?</summary><p>On our own private hardware in the EU. No third-party APIs, no US cloud. We can confirm deletion of your source file after delivery.</p></details>
   <details><summary>What software / model do you use?</summary><p>Real-ESRGAN (x4) for the 4× upscale + denoise, DDColor (ICCV 2023) for black-and-white colorization with temporal color-consistency smoothing, ffmpeg vidstab for stabilization, yadif for VHS/DVD deinterlacing, CodeFormer as a face-dedicated enhancement pass on the Premium tier, and our hybrid AI denoiser — DeepFilterNet 3 (NVIDIA, on our GPUs) layered with low-band + speech preservation — for the audio-enhancement option. All run on our own NVIDIA RTX GPUs — batch-processed per job, fast for SD sources (~realtime).</p></details>
   <details><summary>Will colors look right in a 100-year-old film?</summary><p>Yes — the colorizer infers plausible period colors from context (fabrics, lighting, architecture) rather than slapping a modern palette on, and we smooth the grade across the whole clip so clothing stays a consistent color. You judge it on the free preview; if a look isn't working we'll adjust the grade.</p></details>
+  <details><summary>Can you restore old photographs, not just video?</summary><p>Yes — the same engine family runs on a single image. We upscale (4× AI, Real-ESRGAN), denoise, colorize B&amp;W scans (DDColor), and run a dedicated face-pass (CodeFormer) on people portraits. Same EU-only processing, same before/after proof — just per-image pricing instead of per-minute.</p></details>
   <details><summary>What do I need to send?</summary><p>A cloud link to the original file and anything you specifically want preserved (a scene, on-screen text, a color look).</p></details>
 </section>
 
 <section class="cta">
   <h2>Ready when you are</h2>
-  <p class="sub" style="margin-bottom:26px">Send us your clip. Free 10-second preview before you pay.</p>
+  <p class="sub" style="margin-bottom:26px">Send us a video clip or a single photo. Free preview before you pay.</p>
   <a class="btn" href="mailto:hello@upscalemultimedia.com">Start a restoration</a>
 </section>
 </div>
